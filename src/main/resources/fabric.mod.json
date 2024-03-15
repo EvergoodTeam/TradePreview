@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "tradepreview",
+  "version": "${version}",
+  "name": "Trade Preview",
+  "description": "Displays villager trades with a customizable overlay.",
+  "authors": ["Libra"],
+  "contact": {
+    "issues": "https://github.com/EvergoodTeam/TradePreview/issues",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/tradepreview",
+    "sources": "https://github.com/EvergoodTeam/TradePreview"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/tradepreview/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "modmenu": [
+      "evergoodteam.tradepreview.compat.TradePreviewModMenu"
+    ],
+    "client": [
+      "evergoodteam.tradepreview.client.TradePreviewClient"
+    ],
+    "main": [
+      "evergoodteam.tradepreview.TradePreview"
+    ]
+  },
+  "mixins": [
+    "mixins.tradepreview.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.20.x",
+    "chassis": "1.3.x+02"
+  }
+}

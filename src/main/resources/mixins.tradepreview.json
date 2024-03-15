@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "evergoodteam.tradepreview.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixinPriority": 990,
+  "injectors": {
+    "defaultRequire": 0
+  },
+  "mixins": [
+  ]
+}
