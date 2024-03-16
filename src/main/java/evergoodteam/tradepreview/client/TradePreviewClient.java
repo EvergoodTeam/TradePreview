@@ -6,7 +6,6 @@ import evergoodteam.tradepreview.TradePreview;
 import evergoodteam.tradepreview.client.gui.OffersWidget;
 import evergoodteam.tradepreview.client.gui.OverlayRenderer;
 import evergoodteam.tradepreview.utils.Reference;
-import lombok.extern.log4j.Log4j2;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -17,7 +16,6 @@ import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Log4j2
 @Environment(EnvType.CLIENT)
 public class TradePreviewClient implements ClientModInitializer {
 
@@ -40,7 +38,7 @@ public class TradePreviewClient implements ClientModInitializer {
             Reference.CONFIGS.getHandler().writeUserOptions();
         }
 
-    }, TradePreview.X_COORD.getValue(), TradePreview.Y_COORD.getValue(), TradePreview.BACKGROUND.getIntColorValue(), TradePreview.OUTLINE.getIntColorValue());
+    }, TradePreview.X_COORD.getValue(), TradePreview.Y_COORD.getValue(), TradePreview.BACKGROUND.getIntColorValue(), TradePreview.OUTLINE.getIntColorValue(), TradePreview.GLINT_BACK.getIntColorValue(), TradePreview.GLINT_OUT.getIntColorValue());
 
     @Override
     public void onInitializeClient() {

@@ -29,15 +29,14 @@ public class OffersWidget extends OverlayWidget {
     private int interline = 4;
     private int lineWidth = space + itemSize + space + itemSize + space + arrowWidth + space + itemSize + space;
     private int glintIndex = 0;
+    public int glintBack;
+    public int glintOut;
 
-    public OffersWidget(WidgetUpdateCallback callback, int x, int y, int color) {
-        super(callback, x, y, 0, 0, color);
-        this.width = lineWidth;
-    }
-
-    public OffersWidget(WidgetUpdateCallback callback, int x, int y, int color, int outlineColor) {
+    public OffersWidget(WidgetUpdateCallback callback, int x, int y, int color, int outlineColor, int glintBack, int glintOut) {
         super(callback, x, y, 0, 0, color, outlineColor);
         this.width = lineWidth;
+        this.glintBack = glintBack;
+        this.glintOut = glintOut;
     }
 
     @Override
@@ -102,7 +101,7 @@ public class OffersWidget extends OverlayWidget {
             context.drawTooltip(client.textRenderer, list, x + lineWidth, newY + 16);
         } else if (offer.getSellItem().hasEnchantments()) {
             if (glints.get(glintIndex) == index) {
-                drawRectWithOutline(context, sellItem - 2, newY - 2, 20, 20, 0x6D_55FFFF, 0x6D_55FFFF);
+                drawRectWithOutline(context, sellItem - 2, newY - 2, 20, 20, glintBack, glintOut);
                 context.drawItemTooltip(client.textRenderer, offer.getSellItem(), x + lineWidth - 4, newY);
             }
         }
@@ -118,11 +117,7 @@ public class OffersWidget extends OverlayWidget {
         drawRectWithOutline(context, x, y, width, height, backgroundColor, outlineColor);
     }
 
-    public void renderHeader(DrawContext context) {
-        drawRectWithOutline(context, x, y, width, 20, backgroundColor, outlineColor);
-    }
-
-    public void updateCoordFromOptions(){
+    public void updatePositionFromStored(){
         this.x = TradePreview.X_COORD.getValue();
         this.y = TradePreview.Y_COORD.getValue();
     }
