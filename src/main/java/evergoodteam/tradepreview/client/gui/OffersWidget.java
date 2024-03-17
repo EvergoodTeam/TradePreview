@@ -110,7 +110,6 @@ public class OffersWidget extends OverlayWidget {
     public void renderArrow(DrawContext context, TradeOffer tradeOffer, int y) {
         RenderSystem.enableBlend();
         context.drawGuiTexture(tradeOffer.isDisabled() ? TRADE_ARROW_OUT_OF_STOCK : TRADE_ARROW, x + space + itemSize + space + itemSize + space, y + 3, 0, 10, 9);
-
     }
 
     public void renderContainer(DrawContext context) {
