@@ -51,28 +51,28 @@ public class TradePreviewClient implements ClientModInitializer {
                 "key.tradepreview.previewedit",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_M,
-                "category.tradepreview.utility"
+                "key.tradepreview.category"
         ));
 
         preview = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.tradepreview.preview",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_V,
-                "category.tradepreview.utility"
+                "key.tradepreview.category"
         ));
 
         moveDown = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.tradepreview.down",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_DOWN,
-                "category.tradepreview.utility"
+                "key.tradepreview.category"
         ));
 
         moveUp = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.tradepreview.up",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_UP,
-                "category.tradepreview.utility"
+                "key.tradepreview.category"
         ));
     }
 }

@@ -117,9 +117,14 @@ public class OffersWidget extends OverlayWidget {
         drawRectWithOutline(context, x, y, width, height, backgroundColor, outlineColor);
     }
 
-    public void updatePositionFromStored(){
+    public void updatePositionFromStored() {
         this.x = TradePreview.X_COORD.getValue();
         this.y = TradePreview.Y_COORD.getValue();
+    }
+
+    public void scroll(double vertical) {
+        if (vertical > 0) scrollUp();
+        else scrollDown();
     }
 
     public void scrollDown() {

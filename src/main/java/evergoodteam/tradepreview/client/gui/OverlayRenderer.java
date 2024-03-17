@@ -21,6 +21,7 @@ import java.util.Optional;
 public class OverlayRenderer implements Renderer {
 
     private VillagerEntity previousVillager;
+    public boolean canRender = false;
 
     @Override
     public void onRenderGameOverlayPost(DrawContext drawContext) {
@@ -39,7 +40,6 @@ public class OverlayRenderer implements Renderer {
 
         while (TradePreviewClient.editPreview.wasPressed()) {
             if (client.currentScreen != null) return;
-            //((ChassisOverlaySetter) client).chassisSetOverlay(new TestOverlay(client, null, TradePreviewClient.offersWidget));
             client.setScreen(new EditPositionOverlay(TradePreviewClient.offersWidget));
         }
     }
@@ -52,6 +52,7 @@ public class OverlayRenderer implements Renderer {
 
         if (presence.isEmpty()) {
             TradePreview.NETWORKING.reset();
+            canRender = false;
             return;
         }
 
@@ -61,8 +62,11 @@ public class OverlayRenderer implements Renderer {
             if (villager.getVillagerData().getProfession().equals(VillagerProfession.NONE) || villager != previousVillager) {
                 previousVillager = null;
                 TradePreview.NETWORKING.reset();
+                canRender = false;
                 return;
             }
+
+            canRender = true;
 
             // Not a server, can get the data directly from the entity
             if (!EntityUtils.isServer(client)) {
