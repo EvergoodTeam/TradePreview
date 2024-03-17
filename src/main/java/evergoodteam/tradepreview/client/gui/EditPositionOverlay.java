@@ -1,5 +1,7 @@
 package evergoodteam.tradepreview.client.gui;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import evergoodteam.chassis.client.gui.screen.OverlayScreen;
 import evergoodteam.chassis.client.gui.widget.OverlayWidget;
 import evergoodteam.chassis.config.option.AbstractOption;
@@ -36,6 +38,10 @@ public class EditPositionOverlay extends OverlayScreen {
     }
 
     public void drawCrosshair(DrawContext context) {
+        RenderSystem.blendFuncSeparate(
+                GlStateManager.SrcFactor.ONE_MINUS_DST_COLOR, GlStateManager.DstFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO
+        );
         context.drawGuiTexture(CROSSHAIR, (context.getScaledWindowWidth() - 15) / 2, (context.getScaledWindowHeight() - 15) / 2, 15, 15);
+        RenderSystem.defaultBlendFunc();
     }
 }
