@@ -21,8 +21,7 @@ import java.util.stream.Collectors;
 @Environment(EnvType.CLIENT)
 public class OffersWidget extends OverlayWidget {
 
-    private static final Identifier TRADE_ARROW_OUT_OF_STOCK = new Identifier("container/villager/trade_arrow_out_of_stock");
-    private static final Identifier TRADE_ARROW = new Identifier("container/villager/trade_arrow");
+    private static final Identifier TEXTURE = new Identifier("textures/gui/container/villager2.png");
     private int itemSize = 16;
     private int arrowWidth = 10;
     private int space = 8;
@@ -109,8 +108,11 @@ public class OffersWidget extends OverlayWidget {
 
     public void renderArrow(DrawContext context, TradeOffer tradeOffer, int y) {
         RenderSystem.enableBlend();
-        context.drawGuiTexture(tradeOffer.isDisabled() ? TRADE_ARROW_OUT_OF_STOCK : TRADE_ARROW, x + space + itemSize + space + itemSize + space, y + 3, 0, 10, 9);
-
+        if (tradeOffer.isDisabled()) {
+            context.drawTexture(TEXTURE, x + space + itemSize + space + itemSize + space, y + 3, 0, 25.0F, 171.0F, 10, 9, 512, 256);
+        } else {
+            context.drawTexture(TEXTURE, x + space + itemSize + space + itemSize + space, y + 3, 0, 15.0F, 171.0F, 10, 9, 512, 256);
+        }
     }
 
     public void renderContainer(DrawContext context) {

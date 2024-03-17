@@ -9,11 +9,8 @@ import evergoodteam.tradepreview.TradePreview;
 import evergoodteam.tradepreview.client.TradePreviewClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.util.Identifier;
 
 public class EditPositionOverlay extends OverlayScreen {
-
-    protected static final Identifier CROSSHAIR = new Identifier("hud/crosshair");
 
     public EditPositionOverlay(OverlayWidget overlay) {
         super(overlay);
@@ -41,7 +38,7 @@ public class EditPositionOverlay extends OverlayScreen {
         RenderSystem.blendFuncSeparate(
                 GlStateManager.SrcFactor.ONE_MINUS_DST_COLOR, GlStateManager.DstFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO
         );
-        context.drawGuiTexture(CROSSHAIR, (context.getScaledWindowWidth() - 15) / 2, (context.getScaledWindowHeight() - 15) / 2, 15, 15);
+        context.drawTexture(ICONS, (context.getScaledWindowWidth() - 15) / 2, (context.getScaledWindowHeight() - 15) / 2, 0, 0, 15, 15);
         RenderSystem.defaultBlendFunc();
     }
 }
