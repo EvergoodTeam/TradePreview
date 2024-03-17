@@ -21,7 +21,7 @@ import java.util.Optional;
 public class OverlayRenderer implements Renderer {
 
     private VillagerEntity previousVillager;
-    public boolean canRender = false;
+    private boolean canRender = false;
 
     @Override
     public void onRenderGameOverlayPost(DrawContext drawContext) {
@@ -35,7 +35,7 @@ public class OverlayRenderer implements Renderer {
         }
 
         if (TradePreviewClient.preview.isPressed()) {
-            renderInventoryOverlay(drawContext, client);
+            canRender = renderInventoryOverlay(drawContext, client);
         }
 
         while (TradePreviewClient.editPreview.wasPressed()) {
@@ -44,29 +44,27 @@ public class OverlayRenderer implements Renderer {
         }
     }
 
+    public boolean canRender() {
+        return canRender;
+    }
 
-    public void renderInventoryOverlay(DrawContext drawContext, MinecraftClient client) {
-        if (client.currentScreen != null) return;
+    public boolean renderInventoryOverlay(DrawContext drawContext, MinecraftClient client) {
+        if (client.currentScreen != null) return false;
 
         Optional<VillagerEntity> presence = EntityUtils.getVillager(client);
 
         if (presence.isEmpty()) {
             TradePreview.NETWORKING.reset();
-            canRender = false;
-            return;
-        }
-
-        presence.ifPresent(villager -> {
+            return false;
+        } else {
+            VillagerEntity villager = presence.get();
             if (previousVillager == null) previousVillager = villager;
 
             if (villager.getVillagerData().getProfession().equals(VillagerProfession.NONE) || villager != previousVillager) {
                 previousVillager = null;
                 TradePreview.NETWORKING.reset();
-                canRender = false;
-                return;
+                return false;
             }
-
-            canRender = true;
 
             // Not a server, can get the data directly from the entity
             if (!EntityUtils.isServer(client)) {
@@ -82,7 +80,9 @@ public class OverlayRenderer implements Renderer {
                     TradePreviewClient.offersWidget.renderOffers(villager, TradePreview.NETWORKING.getStoredOffers(), drawContext);
                 }
             }
-        });
+
+            return true;
+        }
     }
 }
 

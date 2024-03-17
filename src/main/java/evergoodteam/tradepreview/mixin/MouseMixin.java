@@ -12,7 +12,7 @@ public class MouseMixin {
 
     @Inject(method = "onMouseScroll", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isSpectator()Z"), cancellable = true)
     private void injectOnScroll(long window, double horizontal, double vertical, CallbackInfo ci) {
-        if (vertical != 0 && TradePreviewClient.preview.isPressed() && TradePreviewClient.RENDERER.canRender) {
+        if (vertical != 0 && TradePreviewClient.preview.isPressed() && TradePreviewClient.RENDERER.canRender()) {
             TradePreviewClient.offersWidget.scroll(vertical);
             ci.cancel();
         }
